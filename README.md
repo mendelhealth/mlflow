@@ -7,12 +7,15 @@ With updeted version of MLFlow to 2.9.2
 Here is what specifically was changed
 
 1. Change vesrion of python to 3.10
-   1. In Dockerfile ``FROMpython:3.10.13AS foundation``
-   2. In pyproject.toml
+   1. In Dockerfile ``FROM python:3.10.13 AS foundation``
+   2. Delete poetry.lock
+   3. In pyproject.toml
       ```
       python = "3.10.*"
       mlflow = {version = "2.9.2", extras = ["extras", "pipelines"]}
+
       ```
+   4. Do poetry install to rebuild poetry.lock
 
 # How to build and push
 
