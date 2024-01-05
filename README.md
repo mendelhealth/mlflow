@@ -1,17 +1,21 @@
-[![Build and Publish Mlflow Docker Image Status](https://github.com/burakince/mlflow/workflows/Build%20and%20Publish%20Mlflow%20Docker%20Image/badge.svg)](https://github.com/burakince/mlflow/actions/workflows/docker-publish.yml)
-![Docker Pulls](https://img.shields.io/docker/pulls/burakince/mlflow)
-![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/burakince/mlflow?sort=date)
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/burakince/mlflow?sort=semver)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/mlflow)](https://artifacthub.io/packages/search?repo=mlflow)
+# Mlflow Docker Image - Mendel customized
 
-# Mlflow Docker Image
+This image is updated derrivative of https://github.com/burakince/mlflow
 
-Please find mlflow docker images from [mlflow docker hub repository](https://hub.docker.com/r/burakince/mlflow).
+With updeted version of MLFlow to 2.9.2
 
-# Usage
+Here is what specifically was changed
 
-Run following command
+1. Change vesrion of python to 3.10
+   1. In Dockerfile ``FROMpython:3.10.13AS foundation``
+   2. In pyproject.toml
+      ```
+      python = "3.10.*"
+      mlflow = {version = "2.9.2", extras = ["extras", "pipelines"]}
+      ```
+
+# How to build and push
 
 ```
-docker run -d -p 5000:5000 burakince/mlflow
+docker build --platform linux/amd64 -t us-central1-docker.pkg.dev/mendel-health/softwares/mlflow . --push
 ```
